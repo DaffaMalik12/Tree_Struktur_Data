@@ -12,6 +12,6 @@ Pada bagian ini akan dijelaskan terkait teori dan implementasi dari struktur dat
 
 ### Kolaborasi
 
-Kami berharap materi ini dapat bermanfaat dan kami menyadari masih banyak kesalahan dan kekurangan dari materi yang kami sajikan. Masukan, perubahan, dan revisi sangat kami sambut pada repository ini.
+Kami berharap materi ini dapat bermanfaat serta kami menyadari masih banyak kesalahan dan kekurangan dari materi yang kami sajikan. Masukan, perubahan, dan revisi sangat kami sambut pada repository ini.
 
 Para calon kolabolator dapat membuat fork dari main branch repo ini dan melakukan pull request setelah tambahan atau perubahan selesai dilakukan, nanti akan kami evaluasi dan kami periksa setiap perubahan dan stiap perbaikan yang ada direquest.
