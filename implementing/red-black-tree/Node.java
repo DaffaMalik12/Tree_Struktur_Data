@@ -1,32 +1,67 @@
-import lombok.Data;
-import lombok.NonNull;
-import lombok.ToString;
+import java.awt.Color;
 
-import java.awt.*;
-
-import static java.awt.Color.BLACK;
-import static java.awt.Color.RED;
-
-@Data
 public class Node<T extends Comparable<T>> {
 
-    @NonNull
     private T data;
-
-    private Color color = RED;
-
+    private Color color = Color.RED;
     private Node<T> leftChild;
     private Node<T> rightChild;
-
-    @ToString.Exclude
     private Node<T> parent;
+
+    public Node(T data) {
+        this.data = data;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Node<T> getLeftChild() {
+        return leftChild;
+    }
+
+    public void setLeftChild(Node<T> leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public Node<T> getRightChild() {
+        return rightChild;
+    }
+
+    public void setRightChild(Node<T> rightChild) {
+        this.rightChild = rightChild;
+    }
+
+    public Node<T> getParent() {
+        return parent;
+    }
+
+    public void setParent(Node<T> parent) {
+        this.parent = parent;
+    }
 
     public boolean isLeftChild() {
         return this == parent.getLeftChild();
     }
 
     public void flipColor() {
-        setColor(color == RED ? BLACK : RED);
+        setColor(color == Color.RED ? Color.BLACK : Color.RED);
     }
 
+    @Override
+    public String toString() {
+        return data.toString();
+    }
 }
