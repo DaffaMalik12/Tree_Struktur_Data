@@ -2,25 +2,23 @@ public class MergeVersion {
 
     public static void main(String[] args) {
 
-        Tree<Integer> avlTree = new AVLTree<>();
-        avlTree.insert(10).insert(2).insert(6).insert(6).insert(25).insert(18).insert(35).insert(15).insert(22).insert(42)
-                .insert(30).insert(40).insert(12).insert(17).insert(19).insert(24).insert(28).insert(33).insert(38);
+        Tree<Integer> bst = new BinarySearchTree<>();
+        bst.insert(20).insert(40).insert(50).insert(30).insert(60).insert(10);
+        bst.traverse();
 
-        avlTree.traverse();
+        System.out.println("Max is: " + bst.getMax());
+        System.out.println("Min is: " + bst.getMin());
 
-        System.out.println("Max is: " + avlTree.getMax());
-        System.out.println("Min is: " + avlTree.getMin());
+        System.out.println("Deleting 60 from Tree");
+        bst.delete(60);
+        System.out.println("New Max is: " + bst.getMax());
+        bst.traverse();
 
-        System.out.println("Deleting 42 from Tree");
-        avlTree.delete(42);
-
-        System.out.println("New Max is: " + avlTree.getMax());
-
-        avlTree.traverse();
     }
+    
 }
 
-interface Tree<T extends Comparable<T>> {
+public interface Tree<T extends Comparable<T>> {
 
     Tree<T> insert(T data);
 
@@ -33,11 +31,12 @@ interface Tree<T extends Comparable<T>> {
     T getMin();
 
     boolean isEmpty();
+
 }
 
-class Node<T extends Comparable<T>> {
+public class Node<T extends Comparable<T>> {
+
     private T data;
-    private int height = 1;
     private Node<T> leftChild;
     private Node<T> rightChild;
 
@@ -51,14 +50,6 @@ class Node<T extends Comparable<T>> {
 
     public void setData(T data) {
         this.data = data;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 
     public Node<T> getLeftChild() {
@@ -78,7 +69,8 @@ class Node<T extends Comparable<T>> {
     }
 }
 
-class AVLTree<T extends Comparable<T>> implements Tree<T> {
+
+public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 
     private Node<T> root;
 
@@ -96,11 +88,8 @@ class AVLTree<T extends Comparable<T>> implements Tree<T> {
             node.setLeftChild(insert(data, node.getLeftChild()));
         } else if (data.compareTo(node.getData()) > 0) {
             node.setRightChild(insert(data, node.getRightChild()));
-        } else {
-            return node;
         }
-        updateHeight(node);
-        return applyRotation(node);
+        return node;
     }
 
     @Override
@@ -117,16 +106,17 @@ class AVLTree<T extends Comparable<T>> implements Tree<T> {
         } else if (data.compareTo(node.getData()) > 0) {
             node.setRightChild(delete(data, node.getRightChild()));
         } else {
+            // One child or No children
             if (node.getLeftChild() == null) {
                 return node.getRightChild();
             } else if (node.getRightChild() == null) {
                 return node.getLeftChild();
             }
+            // Two children
             node.setData(getMax(node.getLeftChild()));
             node.setLeftChild(delete(node.getData(), node.getLeftChild()));
         }
-        updateHeight(node);
-        return applyRotation(node);
+        return node;
     }
 
     @Override
@@ -135,11 +125,12 @@ class AVLTree<T extends Comparable<T>> implements Tree<T> {
     }
 
     private void traverseInOrder(Node<T> node) {
-        if (node != null) {
-            traverseInOrder(node.getLeftChild());
-            System.out.println(node.getData());
-            traverseInOrder(node.getRightChild());
+        if (node == null) {
+            return;
         }
+        traverseInOrder(node.getLeftChild());
+        System.out.print(node.getData() + " ");
+        traverseInOrder(node.getRightChild());
     }
 
     @Override
@@ -177,56 +168,5 @@ class AVLTree<T extends Comparable<T>> implements Tree<T> {
         return root == null;
     }
 
-    private Node<T> applyRotation(Node<T> node) {
-        int balance = balance(node);
-        if (balance > 1) {
-            if (balance(node.getLeftChild()) < 0) {
-                node.setLeftChild(rotateLeft(node.getLeftChild()));
-            }
-            return rotateRight(node);
-        }
-        if (balance < -1) {
-            if (balance(node.getRightChild()) > 0) {
-                node.setRightChild(rotateRight(node.getRightChild()));
-            }
-            return rotateLeft(node);
-        }
-        return node;
-    }
-
-    private Node<T> rotateRight(Node<T> node) {
-        Node<T> leftNode = node.getLeftChild();
-        Node<T> centerNode = leftNode.getRightChild();
-        leftNode.setRightChild(node);
-        node.setLeftChild(centerNode);
-        updateHeight(node);
-        updateHeight(leftNode);
-        return leftNode;
-    }
-
-    private Node<T> rotateLeft(Node<T> node) {
-        Node<T> rightNode = node.getRightChild();
-        Node<T> centerNode = rightNode.getLeftChild();
-        rightNode.setLeftChild(node);
-        node.setRightChild(centerNode);
-        updateHeight(node);
-        updateHeight(rightNode);
-        return rightNode;
-    }
-
-    private void updateHeight(Node<T> node) {
-        int maxHeight = Math.max(
-                height(node.getLeftChild()),
-                height(node.getRightChild())
-        );
-        node.setHeight(maxHeight + 1);
-    }
-
-    private int balance(Node<T> node) {
-        return node != null ? height(node.getLeftChild()) - height(node.getRightChild()) : 0;
-    }
-
-    private int height(Node<T> node) {
-        return node != null ? node.getHeight() : 0;
-    }
 }
+
