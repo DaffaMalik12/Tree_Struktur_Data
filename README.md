@@ -1,6 +1,7 @@
 # Materi Tree
 
 Pada bagian ini akan dijelaskan terkait teori dan implementasi dari struktur data tree
+click [di sini](/teory/README.md) untuk melihat detail teori
 
 ### Kelompok I
 
