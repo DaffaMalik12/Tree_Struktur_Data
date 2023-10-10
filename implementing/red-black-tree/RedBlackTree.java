@@ -113,7 +113,7 @@ public class RedBlackTree<T extends Comparable<T>> implements Tree<T> {
     private void traverseInOrder(Node<T> node) {
         if (node != null) {
             traverseInOrder(node.getLeftChild());
-            System.out.println(node);
+            System.out.println(node.getData() + "");
             traverseInOrder(node.getRightChild());
         }
     }
