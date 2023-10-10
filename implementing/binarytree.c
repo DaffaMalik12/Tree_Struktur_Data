@@ -45,11 +45,11 @@ void postOrderTraversal(struct Node* root) {
 }
 
 int main() {
-    struct Node* root = createNode(1);
+    struct Node* root = createNode(4);
     root->left = createNode(2);
-    root->right = createNode(3);
-    root->left->left = createNode(4);
-    root->left->right = createNode(5);
+    root->right = createNode(5);
+    root->left->left = createNode(1);
+    root->left->right = createNode(3);
 
     printf("PreOrder traversal: ");
     preOrderTraversal(root);
