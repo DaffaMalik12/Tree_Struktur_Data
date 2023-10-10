@@ -63,6 +63,23 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
             traverseInOrder(node.getRightChild());
         }
     }
+    
+    public boolean search(T data) {
+        return search(root, data);
+    }
+    
+    private boolean search(Node<T> node, T data) {
+        if (node == null) {
+            return false; // Data tidak ditemukan
+        }
+        if (data.compareTo(node.getData()) == 0) {
+            return true; // Data ditemukan
+        } else if (data.compareTo(node.getData()) < 0) {
+            return search(node.getLeftChild(), data); // Cari di subpohon kiri
+        } else {
+            return search(node.getRightChild(), data); // Cari di subpohon kanan
+        }
+    }
 
     @Override
     public T getMax() {
