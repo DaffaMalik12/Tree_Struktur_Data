@@ -5,11 +5,11 @@ click [di sini](/teory/README.md) untuk melihat detail teori
 
 ### Kelompok I
 
-11220910000042 - M.Oskhar Mubarok
-11220910000031 - Faiz Haidar H
-11220910000120 - Muhammad Faried
-11220910000119 - M. Daffa Malik A.
-11220910000102 - Raychan Akmal
+- 11220910000042 - M.Oskhar Mubarok
+- 11220910000031 - Faiz Haidar H
+- 11220910000120 - Muhammad Faried
+- 11220910000119 - M. Daffa Malik A.
+- 11220910000102 - Raychan Akmal
 
 ### Kolaborasi
 
